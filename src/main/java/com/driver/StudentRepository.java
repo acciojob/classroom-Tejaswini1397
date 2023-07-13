@@ -51,8 +51,10 @@ public class StudentRepository {
     }
 
     public void deleteTeacherByName(String teacher) {
+        teacherMap.remove(teacher);
     }
 
     public void deleteAllTeachers() {
+        teacherMap.clear();
     }
 }
