@@ -3,6 +3,7 @@ package com.driver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,6 +34,9 @@ public class StudentService {
     public List<String> getStudentsByTeacherName(String teacher) {
         return studentRepository.getStudentByTeacherName(teacher);
     }
+    public List<String> getAllStudent() {
+       return studentRepository.getAllStudent();
+    }
 
     public void deleteTeacherByName(String teacher) {
         studentRepository.deleteTeacherByName(teacher);
@@ -41,4 +45,6 @@ public class StudentService {
     public void deleteAllTeachers() {
         studentRepository.deleteAllTeachers();
     }
+
+
 }

@@ -12,23 +12,16 @@ public class StudentRepository {
 
 
     public void addStudent(Student student) {
-        if(studentMap.containsKey(student)){
-            System.out.println("Student Already Present");
-        }
         studentMap.put(student.getName(),student);
     }
 
     public void addTeacher(Teacher teacher) {
-        if(teacherMap.containsKey(teacher)){
-            System.out.println("Teacher is Already Added");
-        }
+
         teacherMap.put(teacher.getName(),teacher);
     }
 
     public void addStudentTeacherPair(String student, String teacher) {
-        if(studentMap.containsKey(student) && teacherMap.containsKey(teacher)){
             studentTeacherMap.put(student,teacher);
-        }
     }
 
     public Student getStudentByName(String name) {
@@ -52,9 +45,15 @@ public class StudentRepository {
 
     public void deleteTeacherByName(String teacher) {
         teacherMap.remove(teacher);
+        studentTeacherMap.values().removeAll(Collections.singleton(teacher));
     }
 
     public void deleteAllTeachers() {
         teacherMap.clear();
+        studentTeacherMap.clear();
+    }
+
+    public List<String> getAllStudent() {
+        return new ArrayList<>(studentMap.keySet());
     }
 }
