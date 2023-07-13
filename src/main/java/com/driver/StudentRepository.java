@@ -45,7 +45,12 @@ public class StudentRepository {
 
     public void deleteTeacherByName(String teacher) {
         teacherMap.remove(teacher);
-        studentTeacherMap.values().removeAll(Collections.singleton(teacher));
+//        studentTeacherMap.values().removeAll(Collections.singleton(teacher));
+        for(String s:studentTeacherMap.keySet()) {
+           if(studentTeacherMap.get(s).equals(teacher)){
+               studentTeacherMap.remove(teacher);
+           }
+        }
     }
 
     public void deleteAllTeachers() {
@@ -57,3 +62,18 @@ public class StudentRepository {
         return new ArrayList<>(studentMap.keySet());
     }
 }
+// deliveryPartnerDb.remove(partnerId);
+//         List<String>list=partnerDb.get(partnerId);
+//        partnerDb.remove(partnerId);
+//        for(String orderId:list){
+//        orderPartnerDb.remove(orderId);
+//        }
+//        }
+//public void deleteOrderById(String orderId){
+//        ordersDb.remove(orderId);
+//        String partnerId=orderPartnerDb.get(orderId);
+//        orderPartnerDb.remove(orderId);
+//
+//        partnerDb.get(partnerId).remove(orderId);
+//        deliveryPartnerDb.get(partnerId).setNumberOfOrders(partnerDb.get(partnerId).size());
+//        }
