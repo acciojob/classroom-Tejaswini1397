@@ -16,7 +16,6 @@ public class StudentRepository {
     }
 
     public void addTeacher(Teacher teacher) {
-
         teacherMap.put(teacher.getName(),teacher);
     }
 
@@ -72,14 +71,14 @@ public class StudentRepository {
     }
 
     public void deleteAllTeachers() {
-     for(String s:studentTeacherMap.keySet()){
-         teacherMap.remove(s);
-         List<String>al=studentTeacherMap.remove(s);
-         for (String k:al){
-             if(studentMap.containsKey(k)){
-                 studentMap.remove(k);
-             }
-         }
-     }
+        for(String k: studentTeacherMap.keySet()) {
+            teacherMap.remove(k);
+            List<String> al = studentTeacherMap.remove(k);
+            for(String p: al) {
+                if(studentMap.containsKey(p)) {
+                    studentMap.remove(p);
+                }
+            }
+        }
     }
 }
