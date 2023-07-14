@@ -63,7 +63,11 @@ public class StudentRepository {
 
     public void deleteTeacherByName(String teacher) {
         teacherMap.remove(teacher);
-       studentTeacherMap.values().removeAll(Collections.singleton(teacher));
+        List<String>al=studentTeacherMap.remove(teacher);
+        for (int i=0;i<al.size();i++){
+            String s=al.get(i);
+            studentMap.remove(s);
+        }
 
     }
 
