@@ -53,6 +53,13 @@ public class StudentRepository {
        }
         return new ArrayList<>();
     }
+    public List<String> getAllStudent() {
+        List<String>list=new ArrayList<>();
+        for(String s:studentMap.keySet()){
+            list.add(s);
+        }
+        return list;
+    }
 
     public void deleteTeacherByName(String teacher) {
         teacherMap.remove(teacher);
@@ -65,7 +72,5 @@ public class StudentRepository {
         studentTeacherMap.clear();
     }
 
-    public List<String> getAllStudent() {
-        return new ArrayList<>(studentMap.keySet());
-    }
+
 }
