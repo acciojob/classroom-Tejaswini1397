@@ -32,24 +32,25 @@ public class StudentRepository {
     }
 
     public Student getStudentByName(String name) {
-        if(!studentMap.containsKey(name)){
+        if(studentMap.containsKey(name)) {
+            return studentMap.get(name);
+        } else {
             return null;
         }
-        return studentMap.get(name);
     }
 
     public Teacher getTeacherByName(String name) {
-        if(!teacherMap.containsKey(name)){
+        if(teacherMap.containsKey(name)) {
+            return teacherMap.get(name);
+        } else {
             return null;
         }
-
-        return teacherMap.get(name);
     }
 
     public List<String> getStudentByTeacherName(String teacher) {
        if(studentTeacherMap.containsKey(teacher)){
            return studentTeacherMap.get(teacher);
-       }
+       }else
         return new ArrayList<>();
     }
     public List<String> getAllStudent() {
