@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class StudentRepository {
     Map<String,Student>studentMap=new HashMap<>();
     Map<String,Teacher>teacherMap=new HashMap<>();
-    Map<String,String>studentTeacherMap=new HashMap<>();
+    Map<String,List<String>>studentTeacherMap=new HashMap<>();
 
 
     public void addStudent(Student student) {
@@ -21,36 +21,43 @@ public class StudentRepository {
     }
 
     public void addStudentTeacherPair(String student, String teacher) {
-            studentTeacherMap.put(student,teacher);
+        if(studentMap.containsKey(student)&& teacherMap.containsKey(teacher)){
+            List<String> list = studentTeacherMap.get(teacher);
+            list.add(student);
+            studentTeacherMap.put(teacher, list);
+        } else {
+            List<String> al = new ArrayList<>();
+            al.add(student);
+            studentTeacherMap.put(teacher, al);
+        }
     }
 
     public Student getStudentByName(String name) {
+        if(!studentMap.containsKey(name)){
+            return null;
+        }
         return studentMap.get(name);
     }
 
     public Teacher getTeacherByName(String name) {
+        if(!teacherMap.containsKey(name)){
+            return null;
+        }
 
         return teacherMap.get(name);
     }
 
     public List<String> getStudentByTeacherName(String teacher) {
-        List<String>list=new ArrayList<>();
-        for (String student:studentTeacherMap.keySet()){
-            if(studentTeacherMap.get(student).equals(teacher)){
-                list.add(studentTeacherMap.get(student));
-            }
-        }
-        return list;
+       if(studentTeacherMap.containsKey(teacher)){
+           return studentTeacherMap.get(teacher);
+       }
+        return new ArrayList<>();
     }
 
     public void deleteTeacherByName(String teacher) {
         teacherMap.remove(teacher);
-//        studentTeacherMap.values().removeAll(Collections.singleton(teacher));
-        for(String s:studentTeacherMap.keySet()) {
-           if(studentTeacherMap.get(s).equals(teacher)){
-               studentTeacherMap.remove(teacher);
-           }
-        }
+       studentTeacherMap.values().removeAll(Collections.singleton(teacher));
+
     }
 
     public void deleteAllTeachers() {
@@ -62,18 +69,3 @@ public class StudentRepository {
         return new ArrayList<>(studentMap.keySet());
     }
 }
-// deliveryPartnerDb.remove(partnerId);
-//         List<String>list=partnerDb.get(partnerId);
-//        partnerDb.remove(partnerId);
-//        for(String orderId:list){
-//        orderPartnerDb.remove(orderId);
-//        }
-//        }
-//public void deleteOrderById(String orderId){
-//        ordersDb.remove(orderId);
-//        String partnerId=orderPartnerDb.get(orderId);
-//        orderPartnerDb.remove(orderId);
-//
-//        partnerDb.get(partnerId).remove(orderId);
-//        deliveryPartnerDb.get(partnerId).setNumberOfOrders(partnerDb.get(partnerId).size());
-//        }

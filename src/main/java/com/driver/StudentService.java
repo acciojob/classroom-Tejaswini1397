@@ -20,6 +20,7 @@ public class StudentService {
     }
 
     public void addStudentTeacherPair(String student, String teacher) {
+
         studentRepository.addStudentTeacherPair(student,teacher);
     }
 
