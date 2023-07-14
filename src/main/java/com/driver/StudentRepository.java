@@ -72,9 +72,14 @@ public class StudentRepository {
     }
 
     public void deleteAllTeachers() {
-        teacherMap.clear();
-        studentTeacherMap.clear();
+     for(String s:studentTeacherMap.keySet()){
+         teacherMap.remove(s);
+         List<String>al=studentTeacherMap.remove(s);
+         for (String k:al){
+             if(studentMap.containsKey(k)){
+                 studentMap.remove(k);
+             }
+         }
+     }
     }
-
-
 }
