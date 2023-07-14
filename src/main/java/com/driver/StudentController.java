@@ -71,7 +71,7 @@ StudentService studentService;
     public ResponseEntity<String> deleteTeacherByName(@RequestParam String teacher){
         studentService.deleteTeacherByName(teacher);
         return new ResponseEntity<>(teacher + " removed successfully", HttpStatus.CREATED);
-    }e
+    }
     @DeleteMapping("/delete-all-teachers")
     public ResponseEntity<String> deleteAllTeachers(){
         studentService.deleteAllTeachers();
